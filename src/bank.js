@@ -22,11 +22,11 @@ function checkIfAccountIsCorrect(account){
 
   }else{
 
-
 // Om account inte är ett object så går den in här och kastar ett error.
     if(typeof account !== "object"){
 
           throw new Error('Account must be stored as an object');
+
     }else{
 
 // Om account är ett object så går den in här.
@@ -69,7 +69,6 @@ function checkIfAccountIsCorrect(account){
             let riktigtNummer = Number(account[x])
 
 
-            console.log(typeof Number(account[x]))
           if(isNaN(riktigtNummer)){
 
 
@@ -79,8 +78,10 @@ function checkIfAccountIsCorrect(account){
                           nr = Number(account[x])
                 }
           }else{
-              console.log(typeof(Number(account[x])))
               account[x] = riktigtNummer
+              if(Number(account[x]) < 0){
+                throw new Error("Account balance must be a positive number")
+              }
               nr = Number(account[x])
 
           }
@@ -134,6 +135,10 @@ function checkIfAmountIsCorrect(amount){
   if(typeof amount === "number"){
 
     if(isNaN(amount)=== false && amount !== Infinity){
+      if(Number(amount < 0)){
+          throw new Error('Amount must be a positive number!');
+
+      }
       nrAmount = (Number(amount))
 
     }
@@ -147,6 +152,9 @@ function checkIfAmountIsCorrect(amount){
 
     //Om talet inte är NaN eller har värdet Infinity så kommer den att gå in här och uppdatera nrAmount till sitt riktiga värde.
     if(isNaN(nrAmount) === false && nrAmount !== Infinity){
+      if(Number(amount)< 0){
+        throw new Error('Amount must be a positive number!');
+      }
       nrAmount = Number(amount);
     }else{
 
@@ -165,7 +173,6 @@ function checkIfAmountIsCorrect(amount){
 }
 
 let x =0;
-
 //För att sätta in pengar på sitt egna konto.
 function deposit(account, amount) {
 
@@ -178,13 +185,21 @@ function deposit(account, amount) {
   // 2: Sen kollar vi amount parametern
   ///////////////////////////////////////
 
+	checkIfAmountIsCorrect(amount);
 
 
 
 //Om erroret inte kastas så ökar vi account.balane med nrAmount för då vet vi att värdet är ett korrekt nr.
 
-	account.balance += checkIfAmountIsCorrect(amount);
-  x = account.balance;
+    if(amount === 0){
+      throw new Error("You can not put in 0")
+    }
+
+account.balance += checkIfAmountIsCorrect(amount);
+
+  console.log(amount)
+
+
 }
 
 
@@ -194,6 +209,11 @@ function withdraw(account, amount) {
   checkIfAccountIsCorrect(account)
   checkIfAmountIsCorrect(amount)
 
+
+  if(amount > account.balance){
+    		throw new Error('You do not have enough money!');
+
+  }
 	if( amount <= 0 )
 		throw new Error('Amount must be a positive number!');
 	account.balance -= amount;
@@ -206,9 +226,14 @@ function transfer(accountSender, accountReceiver, amount) {
     checkIfAmountIsCorrect(amount)
 
     //Om accountSender inte har tillräckligt med pengar så skickas ett throw.
+
+    if(amount === 0){
+            throw new Error('You can not send 0')
+
+    }
     if(accountSender.balance < amount){
 
-      throw new Error('You do not have enough money to send ' + amount);
+      throw new Error('You do not have enough money to send ' + amount)
 
     }else{
       accountSender.balance -= amount;
@@ -216,7 +241,8 @@ function transfer(accountSender, accountReceiver, amount) {
     }
 
 }
-let jonte = { name: "ij", balance:"-10" }
-
+let jonte = { name: "ij", balance:10 }
+let kalle = { name: 'Kalle', balance: 150 };
+let greta = { name: 'Greta', balance: 1200 };
 
 export {transfer, deposit, withdraw, x, checkIfAmountIsCorrect, checkIfAccountIsCorrect}

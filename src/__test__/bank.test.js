@@ -341,4 +341,26 @@ describe("Check in first parameter if its an correct object", () => {
   })
 
 
+  //check if it is a positive number
+
+  test("Check if positive number in balance", ()=>{
+      expect(()=>{deposit({name:"Jonte", balance:-200}, 10)}).toThrowError(Error)
+  })
+
+  test("Check if amount value is 0", ()=>{
+      expect(()=>{deposit({name:"Jonte", balance:100}, 0)}).toThrowError(Error)
+  })
+
+  test("Check 0", ()=>{
+      expect(()=>{transfer({name:"Jonte", balance:100}, {name:"thatzita", balance:100},0)}).toThrowError(Error)
+  })
+
+  test("Transfer 0", ()=>{
+      expect(()=>{transfer({name:"Jonte", balance:0}, {name:"thatzita", balance:100},10)}).toThrowError(Error)
+  })
+
+
+
+
+
 })

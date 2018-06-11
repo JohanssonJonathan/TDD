@@ -1,0 +1,50 @@
+1. Har ni testat samma saker?
+
+TEMP
+Andra gruppen hade missförstått uppgifterna lite och hade bara skrivit ett test.
+Istället för att skriva flera testar så bytte dom ut vad dom kollade på i samma test.
+Sedan kommenterade dom vad som testats vilket var följande:
+String
+Tom String
+Number
+null
+
+Gränsvärden testade båda grupperna:
+-274
+-273.15
+-273.14
+
+LICENSE
+Andra gruppen hade missförstått frågan lite.
+Kollar bara exakt ålder när en får ta körkort. Matchar inte ålder och typ så returnerades false
+Konverterade inte små till stora bokstäver.
+
+BANK
+Testade så att det är ett giltligt tal
+Kollade om det är ett object samt om det innehöll "name" och "balance" samt att ena är string och andra number.
+Kollade också så att du inte tog ut mer pengar än vad som fanns på kontot.
+Glömde att kolla så att man inte skickar 0kr.
+
+Temp- och bankuppgiften testade båda grupperna dom olika datatyperna men olika mycket inom själva domänen.
+Andra gruppen trodde att resultat skulle vara rött om det kastade ett error vilket dom skulle korrigera.
+
+2. Om ni har missat något testfall som de andra täckte in - varför tänkte ni inte på det?
+Hur kan man tänka för att inte missa sådana fall i framtiden?
+
+TEMP
+Några tester som andra gruppen missat var array, Obj, decimaltal och undefined.
+
+LICENSE
+Missförstod uppgiften lite och hade inga direkta tester att visa.
+
+BANK
+Få testfall, string och number testades på dom 3 olika funktionerna
+
+För att undvika att missa något testfall kan man tänka att alla olika datatyper bör testas och det som finns inuti domänen för att täcka upp så mycket som möjligt.
+
+3. Vilka är de viktigaste testfallen?
+Gränsvärden är dom viktigaste testfallen.
+Om man vet gränsvärdena på en funktion så vet man vad som är viktigt att testa och vad som är onödigt att testa.
+När du till exempel kollar om du får ta körkort vid 18 års ålder. Gränsvärdet är att man måste vara minst 18 år gammal eller äldre. Om du testar åldrar flera gånger som är äldre än 18 så gör du många olika onödiga tester. För resultatet kommer att bli detsamma.
+Genom att bara testa om man är 18 eller om man har en ålder över 18 så har man täckt gränsvärdena för ålderskontroll. Samt ett test för kasta ett error om man är yngre än 18.
+Tre eller två tester ska vara tillräckligt för att kunna se att funktionen reagerar som den ska om man har byggt upp den rätt om man testar ålder.
